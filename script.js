@@ -128,9 +128,25 @@ function initializeNavigation() {
     
     if (videoButtonTimeline) {
         videoButtonTimeline.addEventListener('click', () => {
+            console.log('Video button clicked');
             videoButtonTimeline.style.display = 'none';
             videoPlayerTimeline.style.display = 'block';
-            proposalVideoTimeline.play();
+            
+            // Ensure video is ready and play
+            if (proposalVideoTimeline) {
+                proposalVideoTimeline.currentTime = 0; // Reset to start
+                const playPromise = proposalVideoTimeline.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Video play error:', error);
+                        // Fallback: try playing again
+                        setTimeout(() => {
+                            proposalVideoTimeline.play();
+                        }, 500);
+                    });
+                }
+            }
         });
     }
     
