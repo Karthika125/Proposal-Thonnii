@@ -130,7 +130,10 @@ function initializeNavigation() {
             videoButtonTimeline.style.display = 'none';
             videoPlayerTimeline.style.display = 'block';
             if (videoInstruction) {
-                videoInstruction.style.display = 'block';
+                // Show instruction after a delay
+                setTimeout(() => {
+                    videoInstruction.style.display = 'block';
+                }, 2000);
             }
             proposalVideoTimeline.play();
         });
@@ -138,10 +141,8 @@ function initializeNavigation() {
     
     if (proposalVideoTimeline) {
         proposalVideoTimeline.addEventListener('ended', () => {
-            // Video ended, skip page 3 and go to proposal page
-            setTimeout(() => {
-                skipToPage(3); // Skip to page 4 (proposal)
-            }, 1000);
+            // Video ended - just let it finish, don't auto-skip
+            // User will click Next button to continue
         });
     }
     
