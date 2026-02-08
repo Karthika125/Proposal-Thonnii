@@ -82,6 +82,7 @@ function initializeEnvelope() {
     const envelope = document.getElementById('envelope');
     
     envelope.addEventListener('click', () => {
+        if (envelope.classList.contains('open')) return;
         envelope.classList.add('open');
         
         // Show instruction text
