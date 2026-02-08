@@ -152,15 +152,25 @@ function initializeNavigation() {
     // Step 3: When video ends -> show Next button
     if (proposalVideoTimeline) {
         proposalVideoTimeline.addEventListener('ended', () => {
-            videoInstruction.style.display = 'block';
-            timelineNextBtn.style.display = 'block';
+            console.log('Video ended');
+            if (videoInstruction) {
+                videoInstruction.style.display = 'block';
+            }
+            if (timelineNextBtn) {
+                timelineNextBtn.style.display = 'block';
+            }
         });
     }
     
     // Step 4: Click Next -> go to proposal
     if (timelineNextBtn) {
         timelineNextBtn.addEventListener('click', () => {
-            skipToPage(3);
+            // Skip empty page 3 and go directly to page 4 (proposal)
+            pages[currentPage].classList.remove('active');
+            currentPage = 3; // Page 4 is at index 3
+            if (currentPage < pages.length) {
+                pages[currentPage].classList.add('active');
+            }
         });
     }
     
