@@ -124,30 +124,36 @@ function initializeNavigation() {
     const videoPlayerTimeline = document.getElementById('videoPlayerTimeline');
     const proposalVideoTimeline = document.getElementById('proposalVideoTimeline');
     const videoInstruction = document.getElementById('videoInstruction');
+    const timelineNextBtn = document.getElementById('timelineNextBtn');
     
     if (videoButtonTimeline) {
         videoButtonTimeline.addEventListener('click', () => {
             videoButtonTimeline.style.display = 'none';
             videoPlayerTimeline.style.display = 'block';
-            if (videoInstruction) {
-                // Show instruction after a delay
-                setTimeout(() => {
-                    videoInstruction.style.display = 'block';
-                }, 2000);
-            }
             proposalVideoTimeline.play();
         });
     }
     
     if (proposalVideoTimeline) {
+        proposalVideoTimeline.addEventListener('play', () => {
+            // Hide Next button when video starts
+            if (timelineNextBtn) {
+                timelineNextBtn.style.display = 'none';
+            }
+        });
+        
         proposalVideoTimeline.addEventListener('ended', () => {
-            // Video ended - just let it finish, don't auto-skip
-            // User will click Next button to continue
+            // Show Next button and instruction when video ends
+            if (videoInstruction) {
+                videoInstruction.style.display = 'block';
+            }
+            if (timelineNextBtn) {
+                timelineNextBtn.style.display = 'block';
+            }
         });
     }
     
     // Page 2: Timeline Next Button
-    const timelineNextBtn = document.getElementById('timelineNextBtn');
     if (timelineNextBtn) {
         timelineNextBtn.addEventListener('click', () => {
             skipToPage(3); // Skip to page 4 (proposal)
