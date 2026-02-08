@@ -123,52 +123,39 @@ function initializeNavigation() {
     const videoButtonTimeline = document.getElementById('videoButtonTimeline');
     const videoPlayerTimeline = document.getElementById('videoPlayerTimeline');
     const proposalVideoTimeline = document.getElementById('proposalVideoTimeline');
+    const videoPlayButton = document.getElementById('videoPlayButton');
     const videoInstruction = document.getElementById('videoInstruction');
     const timelineNextBtn = document.getElementById('timelineNextBtn');
     
+    // Show video player when user clicks video button
     if (videoButtonTimeline) {
         videoButtonTimeline.addEventListener('click', () => {
-            console.log('Video button clicked');
             videoButtonTimeline.style.display = 'none';
             videoPlayerTimeline.style.display = 'block';
-            
-            // Wait for DOM to update, then play video
-            setTimeout(() => {
-                if (proposalVideoTimeline) {
-                    proposalVideoTimeline.currentTime = 0;
-                    proposalVideoTimeline.load(); // Ensure video is loaded
-                    proposalVideoTimeline.muted = false; // Unmute before playing
-                    
-                    const playPromise = proposalVideoTimeline.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            console.log('Video playing successfully');
-                        }).catch(error => {
-                            console.log('Video play error:', error);
-                            // Retry with longer delay
-                            setTimeout(() => {
-                                proposalVideoTimeline.play().catch(err => {
-                                    console.log('Retry failed:', err);
-                                });
-                            }, 1500);
-                        });
-                    }
-                }
-            }, 800); // 800ms delay to ensure DOM update
         });
     }
     
+    // Play video when user clicks the play button
+    if (videoPlayButton) {
+        videoPlayButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            videoPlayButton.style.display = 'none';
+            if (proposalVideoTimeline) {
+                proposalVideoTimeline.play();
+            }
+        });
+    }
+    
+    // When video ends, show Next button
     if (proposalVideoTimeline) {
         proposalVideoTimeline.addEventListener('play', () => {
-            // Hide Next button when video starts
             if (timelineNextBtn) {
                 timelineNextBtn.style.display = 'none';
             }
         });
         
         proposalVideoTimeline.addEventListener('ended', () => {
-            // Show Next button and instruction when video ends
             if (videoInstruction) {
                 videoInstruction.style.display = 'block';
             }
