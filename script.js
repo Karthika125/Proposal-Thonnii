@@ -119,56 +119,48 @@ function skipToPage(pageNumber) {
 }
 
 function initializeNavigation() {
-    // Page 2: Timeline Video Button
+    // Page 2: Show video player
     const videoButtonTimeline = document.getElementById('videoButtonTimeline');
     const videoPlayerTimeline = document.getElementById('videoPlayerTimeline');
+    const playNowButton = document.getElementById('playNowButton');
     const proposalVideoTimeline = document.getElementById('proposalVideoTimeline');
-    const videoPlayButton = document.getElementById('videoPlayButton');
     const videoInstruction = document.getElementById('videoInstruction');
     const timelineNextBtn = document.getElementById('timelineNextBtn');
     
-    // Show video player when user clicks video button
+    // Step 1: Click "Click Me" button -> show video player
     if (videoButtonTimeline) {
         videoButtonTimeline.addEventListener('click', () => {
             videoButtonTimeline.style.display = 'none';
             videoPlayerTimeline.style.display = 'block';
+            playNowButton.style.display = 'block';
         });
     }
     
-    // Play video when user clicks the play button
-    if (videoPlayButton) {
-        videoPlayButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            videoPlayButton.style.display = 'none';
+    // Step 2: Click "Play Video" button -> play video
+    if (playNowButton) {
+        playNowButton.addEventListener('click', () => {
+            playNowButton.style.display = 'none';
             if (proposalVideoTimeline) {
-                proposalVideoTimeline.play();
+                proposalVideoTimeline.currentTime = 0;
+                proposalVideoTimeline.play().catch(err => {
+                    console.log('Play error:', err);
+                });
             }
         });
     }
     
-    // When video ends, show Next button
+    // Step 3: When video ends -> show Next button
     if (proposalVideoTimeline) {
-        proposalVideoTimeline.addEventListener('play', () => {
-            if (timelineNextBtn) {
-                timelineNextBtn.style.display = 'none';
-            }
-        });
-        
         proposalVideoTimeline.addEventListener('ended', () => {
-            if (videoInstruction) {
-                videoInstruction.style.display = 'block';
-            }
-            if (timelineNextBtn) {
-                timelineNextBtn.style.display = 'block';
-            }
+            videoInstruction.style.display = 'block';
+            timelineNextBtn.style.display = 'block';
         });
     }
     
-    // Page 2: Timeline Next Button
+    // Step 4: Click Next -> go to proposal
     if (timelineNextBtn) {
         timelineNextBtn.addEventListener('click', () => {
-            skipToPage(3); // Skip to page 4 (proposal)
+            skipToPage(3);
         });
     }
     

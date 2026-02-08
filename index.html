@@ -61,17 +61,13 @@
                 <div class="timeline-section present">
                     <p class="timeline-label present-label">ivdeeee ethii</p>
                     <button class="video-button-timeline" id="videoButtonTimeline">Click Me 💗</button>
-                    <div class="video-player-timeline" id="videoPlayerTimeline" style="display: none;">
-                        <div class="video-wrapper">
-                            <video id="proposalVideoTimeline" width="100%" height="auto" controls playsinline>
-                                <source src="proposal-video.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <button class="video-play-overlay" id="videoPlayButton" style="display: flex;">
-                                <span style="font-size: 3rem;">▶️</span>
-                            </button>
-                        </div>
+                    <div class="video-player-timeline" id="videoPlayerTimeline" style="display: none; position: relative;">
+                        <video id="proposalVideoTimeline" width="100%" height="auto" controls playsinline style="display: block; border-radius: 15px;">
+                            <source src="proposal-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
+                    <button class="play-now-button" id="playNowButton" style="display: none; margin-top: 15px;">▶️ Play Video</button>
                     <p class="video-instruction" id="videoInstruction" style="display: none; text-align: center; margin-top: 8px;">Watch completely then click Next 💕</p>
                 </div>
 
