@@ -461,7 +461,6 @@ body {
     animation: video-fade 0.6s ease;
     margin-top: 8px;
     margin-bottom: 8px;
-    aspect-ratio: 16 / 9;
     flex-shrink: 0;
 }
 
@@ -498,10 +497,10 @@ body {
 .video-player-timeline video {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 15px;
     background: #000;
-    max-width: 450px;
+    display: block;
 }
 
 .video-instruction {
