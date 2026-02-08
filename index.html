@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Will You Be Mine? 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Hearts Animation -->
+    <div class="hearts-container"></div>
+
+    <!-- Music Toggle Button -->
+    <div class="music-toggle" id="musicToggle">
+        <span class="music-icon">♫</span>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- PAGE 1: LETTER OPENING -->
+        <div class="page page-1 active">
+            <div class="page-content">
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-front">
+                            <div class="envelope-flap"></div>
+                            <div class="heart-seal">💕</div>
+                        </div>
+                        <div class="envelope-letter">
+                            <p class="letter-text">Edeeiii Kocheee💕 oru karym parayan ond</p>
+                            <p class="instruction-text" style="display: none; margin-top: 15px; font-size: 0.9rem; color: var(--primary-pink);">Click anywhere to continue 💌</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="click-hint">Clickie clickie 💌</p>
+            </div>
+        </div>
+
+        <!-- PAGE 2: JOURNEY TIMELINE -->
+        <div class="page page-2">
+            <div class="page-content journey-timeline">
+                <div class="timeline-section">
+                    <p class="timeline-label past">ivdnnn tudangii</p>
+                    <div class="first-message-photo">
+                        <img src="photo1.jpeg" alt="Our first message">
+                    </div>
+                </div>
+
+                <div class="arrow-container">
+                    <svg class="curvy-arrow" viewBox="0 0 100 200" preserveAspectRatio="none">
+                        <path class="arrow-path" d="M 50 20 Q 30 60, 50 100 Q 70 140, 50 180" fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+                        <polygon points="50,190 45,175 55,175" fill="#FF6B9D"/>
+                    </svg>
+                </div>
+
+                <div class="timeline-section present">
+                    <p class="timeline-label present-label">ivdeeee ethii</p>
+                    <button class="video-button-timeline" id="videoButtonTimeline">Click Me 💗</button>
+                    <div class="video-player-timeline" id="videoPlayerTimeline" style="display: none;">
+                        <video id="proposalVideoTimeline" width="100%" height="auto" controls>
+                            <source src="proposal-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="arrow-container">
+                    <svg class="curvy-arrow" viewBox="0 0 100 200" preserveAspectRatio="none">
+                        <path class="arrow-path" d="M 50 20 Q 30 60, 50 100 Q 70 140, 50 180" fill="none" stroke="#FF6B9D" stroke-width="3" stroke-linecap="round"/>
+                        <polygon points="50,190 45,175 55,175" fill="#FF6B9D"/>
+                    </svg>
+                </div>
+
+                <p class="timeline-label future">ini kureee povanond</p>
+                <button class="next-button timeline-next" id="timelineNextBtn" style="margin-top: 30px;">Next 💕</button>
+            </div>
+        </div>
+
+        <!-- PAGE 3: THE BIG QUESTION (Was Video Reveal - Now Direct to Proposal) -->
+        <div class="page page-3" style="display: none;">
+        </div>
+
+        <!-- PAGE 4: THE BIG QUESTION -->
+        <div class="page page-4">
+            <div class="page-content">
+                <div class="rose-container">
+                    <div class="rose">🌹</div>
+                </div>
+                <h1 class="big-question">Edeeii Will you be my boyfriend? 💍</h1>
+                <div class="button-group">
+                    <button class="yes-button" id="yesBtn">YES 💖</button>
+                    <button class="yesss-button" id="ysssBtn">YESSS 😭💕</button>
+                </div>
+                <p class="confirmation-text" id="confirmationText" style="display: none;">
+                    Bhahhahaha nink vere option illaa 💕
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
